@@ -1,3 +1,5 @@
+// Mostrar Reloj en index 
+
 function showTime() {
     var date = new Date();
     var h = date.getHours(); // 0 - 23
@@ -28,15 +30,21 @@ function showTime() {
 showTime();
 
 
-// Ubication script
+// Ubication/time script
+
 function getLocation() {
     const successCallback = (position) => {
-        console.log(position);
-      };
-      
-      const errorCallback = (error) => {
-        console.log(error);
-      };
-      
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      console.log(position);
+      const locationInput = document.getElementById("location");
+      const timeInput = document.getElementById("time");
+      locationInput.value = `${position.coords.latitude}, ${position.coords.longitude}`;
+      timeInput.value = new Date().toLocaleTimeString();
+    };
+    
+    const errorCallback = (error) => {
+      console.log(error);
+    };
+    
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
+  

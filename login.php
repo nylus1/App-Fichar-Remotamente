@@ -27,9 +27,10 @@ if (mysqli_num_rows($result) == 0) {
   // User exists, insert their location, time and username into the user_location table
   $location = $_POST['location'];
   $time = $_POST['time'];
+  $day = date('Y-m-d');
 
-  $stmt = mysqli_prepare($conn, "INSERT INTO user_location (username, location, time) VALUES (?, ?, ?)");
-  mysqli_stmt_bind_param($stmt, "sss", $user, $location, $time);
+  $stmt = mysqli_prepare($conn, "INSERT INTO user_location (username, location, time, day) VALUES (?, ?, ?, ?)");
+  mysqli_stmt_bind_param($stmt, "ssss", $user, $location, $time, $day);
   mysqli_stmt_execute($stmt);
 
   // Redirect to loggedin.html
